@@ -921,6 +921,11 @@
   resolved "http://registry.npm.taobao.org/@types/prop-types/download/@types/prop-types-15.5.6.tgz#9c03d3fed70a8d517c191b7734da2879b50ca26c"
   integrity sha1-nAPT/tcKjVF8GRt3NNooebUMomw=
 
+"@types/qs@^6.5.1":
+  version "6.5.1"
+  resolved "http://registry.npm.taobao.org/@types/qs/download/@types/qs-6.5.1.tgz#a38f69c62528d56ba7bd1f91335a8004988d72f7"
+  integrity sha1-o49pxiUo1WunvR+RM1qABJiNcvc=
+
 "@types/react-dom@^16.0.11":
   version "16.0.11"
   resolved "http://registry.npm.taobao.org/@types/react-dom/download/@types/react-dom-16.0.11.tgz#bd10ccb0d9260343f4b9a49d4f7a8330a5c1f081"
@@ -8418,6 +8423,11 @@ qs@6.5.2, qs@~6.5.2:
   version "6.5.2"
   resolved "http://registry.npm.taobao.org/qs/download/qs-6.5.2.tgz#cb3ae806e8740444584ef154ce8ee98d403f3e36"
   integrity sha1-yzroBuh0BERYTvFUzo7pjUA/PjY=
+
+qs@^6.6.0:
+  version "6.6.0"
+  resolved "http://registry.npm.taobao.org/qs/download/qs-6.6.0.tgz#a99c0f69a8d26bf7ef012f871cdabb0aee4424c2"
+  integrity sha1-qZwPaajSa/fvAS+HHNq7Cu5EJMI=
 
 querystring-es3@^0.2.0:
   version "0.2.1"
