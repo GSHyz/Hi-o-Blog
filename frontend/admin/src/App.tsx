@@ -1,12 +1,19 @@
 import React, { Component } from 'react'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { hot } from 'react-hot-loader'
+import Login from 'pages/login'
 
 @hot(module)
 class App extends Component {
     render() {
         return (
-
-            <section className="app">{process.env.REACT_APP_TITLE}</section>
+            <>
+                <BrowserRouter>
+                    <Switch>
+                        <Route path="/login" component={Login} exact/>
+                    </Switch>
+                </BrowserRouter>
+            </>
         )
     }
 }

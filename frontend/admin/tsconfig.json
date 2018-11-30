@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": "./",
     "target": "es5",
     "allowJs": true,
     "skipLibCheck": false,
@@ -16,7 +17,33 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "preserve",
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "paths": {
+      "store/*": [
+        "src/store/*"
+      ],
+      "config/*": [
+        "src/config/*"
+      ],
+      "layouts/*": [
+        "src/layouts/*"
+      ],
+      "pages/*": [
+        "src/pages/*"
+      ],
+      "components/*": [
+        "src/components/*"
+      ],
+      "containers/*": [
+        "src/containers/*"
+      ],
+      "utils/*": [
+        "src/utils/*"
+      ],
+      "api/*": [
+        "src/api/*"
+      ]
+    }
   },
   "include": [
     "src"
