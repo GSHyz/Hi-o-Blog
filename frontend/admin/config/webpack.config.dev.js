@@ -1,5 +1,3 @@
-'use strict'
-
 const fs = require('fs')
 const path = require('path')
 const resolve = require('resolve')
@@ -223,7 +221,6 @@ module.exports = {
                             customize: require.resolve(
                                 'babel-preset-react-app/webpack-overrides'
                             ),
-
                             plugins: [
                                 [
                                     require.resolve('babel-plugin-named-asset-import'),
@@ -234,7 +231,8 @@ module.exports = {
                                             }
                                         }
                                     }
-                                ]
+                                ],
+                                'react-hot-loader/babel'
                             ],
                             // This is a feature of `babel-loader` for webpack (not Babel itself).
                             // It enables caching results in ./node_modules/.cache/babel-loader/
@@ -399,7 +397,7 @@ module.exports = {
             typescript: resolve.sync('typescript', {
                 basedir: paths.appNodeModules
             }),
-            async: false,
+            async: true,
             checkSyntacticErrors: true,
             tsconfig: paths.appTsConfig,
             compilerOptions: {
@@ -419,7 +417,7 @@ module.exports = {
                 '!src/setupTests.*'
             ],
             watch: paths.appSrc,
-            silent: true,
+            silent: false,
             formatter: typescriptFormatter
         })
     ].filter(Boolean),

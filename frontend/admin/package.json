@@ -80,7 +80,8 @@
     "babel-plugin-transform-remove-console": "^6.9.4",
     "less": "^3.9.0",
     "less-loader": "^4.1.0",
-    "prettier": "^1.15.3"
+    "prettier": "^1.15.3",
+    "react-hot-loader": "^4.3.12"
   },
   "jest": {
     "collectCoverageFrom": [
