@@ -39,7 +39,7 @@ const sassRegex = /\.(scss|sass)$/
 const sassModuleRegex = /\.module\.(scss|sass)$/
 
 // common function to get style loaders
-const getStyleLoaders = (cssOptions, preProcessor) => {
+const getStyleLoaders = (cssOptions, preProcessor, preProcessorOptions) => {
     const loaders = [
         require.resolve('style-loader'),
         {
@@ -68,7 +68,10 @@ const getStyleLoaders = (cssOptions, preProcessor) => {
         }
     ]
     if (preProcessor) {
-        loaders.push(require.resolve(preProcessor))
+        loaders.push({
+            loader: require.resolve(preProcessor),
+            options: preProcessorOptions || {}
+        })
     }
     return loaders
 }
@@ -312,6 +315,19 @@ module.exports = {
                                 getLocalIdent: getCSSModuleLocalIdent
                             },
                             'sass-loader'
+                        )
+                    },
+                    {
+                        test: /\.less$/,
+                        use: getStyleLoaders(
+                            { importLoaders: 2 },
+                            'less-loader',
+                            {
+                                javascriptEnabled: true,
+                                modifyVars: {
+                                    '@primary-color': '#6d4fc2'
+                                }
+                            }
                         )
                     },
                     // "file" loader makes sure those assets get served by WebpackDevServer.
