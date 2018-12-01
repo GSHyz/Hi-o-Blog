@@ -3,9 +3,12 @@ import loggerMiddleware from 'redux-logger'
 import createSagaMiddleware from 'redux-saga'
 import saga from './auth/sagas'
 import authReducer from './auth/reducer'
+import { connectRouter, routerMiddleware } from 'connected-react-router'
+import history from 'utils/history'
 
 const sagaMiddleware = createSagaMiddleware()
 const rootReducer = combineReducers({
+    router: connectRouter(history),
     auth: authReducer
 })
 
@@ -15,7 +18,13 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const store = createStore(
     rootReducer,
     {},
-    composeEnhancers(applyMiddleware(sagaMiddleware, loggerMiddleware))
+    composeEnhancers(
+        applyMiddleware(
+            sagaMiddleware,
+            routerMiddleware(history),
+            loggerMiddleware
+        )
+    )
 )
 sagaMiddleware.run(saga)
 
