@@ -1,6 +1,9 @@
 import { RouterState } from 'connected-react-router'
 
-declare namespace MODEL {
+/**
+ *  redux store state tree
+ */
+declare module MODEL {
     export interface IApp {
         auth: IAuth
         router: RouterState

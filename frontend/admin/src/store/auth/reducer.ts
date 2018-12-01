@@ -4,6 +4,7 @@ import {
     ILoginSuccessAction
 } from './actions'
 import constants from 'store/auth/constants'
+import { MODEL } from 'store/model'
 
 const initialState: MODEL.IAuth = {
     username: '',

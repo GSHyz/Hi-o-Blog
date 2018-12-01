@@ -4,6 +4,7 @@ import { hot } from 'react-hot-loader'
 import { connect } from 'react-redux'
 import { Dispatch } from 'redux'
 import { ILoginAction, login } from 'store/auth/actions'
+import { MODEL } from 'store/model'
 
 interface IStateToProps {
     loggingIn: boolean,
