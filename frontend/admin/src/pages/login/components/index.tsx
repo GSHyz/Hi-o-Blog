@@ -2,17 +2,24 @@ import React, { PureComponent } from 'react'
 import style from './index.module.scss'
 import { Form, Button, Input, Icon } from 'antd'
 import { FormComponentProps } from 'antd/es/form'
+import { login } from 'store/auth/actions'
 
 const { Item } = Form
 
 interface IProps extends FormComponentProps {
     loading: boolean,
+    login: typeof login
 }
 
 class Login extends PureComponent<IProps> {
 
     handleSubmit: React.ReactEventHandler<HTMLButtonElement> = e => {
         e.preventDefault()
+        this.props.form.validateFields((error, payload) => {
+            if (!error) {
+                this.props.login(payload)
+            }
+        })
 
     }
 
@@ -79,6 +86,7 @@ class Login extends PureComponent<IProps> {
                                 size="large"
                                 type="primary"
                                 htmlType="submit"
+                                loading={this.props.loading}
                                 className={style.loginBtn}
                             >
                                 登录
