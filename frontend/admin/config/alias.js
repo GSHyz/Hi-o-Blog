@@ -6,6 +6,7 @@ const alias = {
     'utils': path.resolve(__dirname, '../src/utils'),
     'assets': path.resolve(__dirname, '../src/assets'),
     'pages':path.resolve(__dirname,'../src/pages'),
-    'config':path.resolve(__dirname,'../src/config')
+    'config':path.resolve(__dirname,'../src/config'),
+    'api':path.resolve(__dirname,'../src/api'),
 }
 module.exports = alias

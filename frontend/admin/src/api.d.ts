@@ -10,7 +10,7 @@ declare namespace API {
         }
     }
 
-    export interface error extends Error {
+    export interface error {
         code?: number
         message: string
 

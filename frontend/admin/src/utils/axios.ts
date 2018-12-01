@@ -18,7 +18,7 @@ axios.interceptors.response.use(
         let err: API.error
         if (!response || !response.data || !response.data.message) {
             err = { message: 'server 内部错误' }
-            return Promise.reject(error)
+            return Promise.reject(err)
         }
         err = { message: response.data.message }
         return Promise.reject(err)
