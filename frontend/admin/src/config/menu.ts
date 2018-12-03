@@ -4,6 +4,10 @@ import { isUrl } from 'utils/index'
 // menu data
 const menuConfig: API.auth.IMenuItem[] = [
     {
+        name: '文章管理',
+        path: 'blog'
+    },
+    {
         name: '日志分析',
         path: 'log'
     },

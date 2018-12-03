@@ -6,8 +6,8 @@ import routerData from 'config/router'
 import pathToRegexp from 'path-to-regexp'
 import DocumentTitle from 'react-document-title'
 import RouteLoading from 'components/RouteLoading'
-import { Switch, Redirect } from 'react-router-dom'
-import AuthorizedRoute from 'containers/AuthorizedRoute'
+import { Switch, Redirect, Route } from 'react-router-dom'
+// import AuthorizedRoute from 'containers/AuthorizedRoute'
 import { MODEL } from 'store/model'
 import { getCurrentUserAction, IGetCurrentUserAction, logOutAction } from 'store/auth/actions'
 import { hot } from 'react-hot-loader'
@@ -37,7 +37,7 @@ const mapDispatchToProps = (dispatch: Dispatch<IGetCurrentUserAction>) => ({
 class BasicLayoutContainer extends PureComponent<IProps> {
 
     componentDidMount() {
-        this.props.getCurrentUser()
+        // this.props.getCurrentUser()
     }
 
     getPageTitle = (): string => {
@@ -79,7 +79,7 @@ class BasicLayoutContainer extends PureComponent<IProps> {
                                 const Component = routerData[path].component
                                 if (Component) {
                                     return (
-                                        <AuthorizedRoute
+                                        <Route
                                             key={path}
                                             path={path}
                                             component={Component}

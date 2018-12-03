@@ -3,10 +3,20 @@ import { hot } from 'react-hot-loader'
 import { connect } from 'react-redux'
 import { Dispatch } from 'redux'
 import { MODEL } from 'store/model'
-import { getBlogsAction, getBlogsCancelAction, IGetBlogsAction, IGetBlogsCancelAction } from 'store/blogs/actions'
-import { Card } from 'antd'
+import {
+    createBlogAction,
+    getBlogsAction,
+    getBlogsCancelAction, ICreateBlogAction,
+    IGetBlogsAction,
+    IGetBlogsCancelAction
+} from 'store/blogs/actions'
+import { Card, Form, Button, Input } from 'antd'
+import { FormComponentProps } from 'antd/es/form'
+import { WrappedFormUtils } from 'antd/es/form/Form'
 
-interface IStateToProps {
+const { Item } = Form
+
+interface IStateToProps extends FormComponentProps {
     loading: boolean,
     blogs: API.blogs.IBlogItem[],
     total: number | string
@@ -14,7 +24,8 @@ interface IStateToProps {
 
 interface IDispacthToProps {
     getBlogs: typeof getBlogsAction,
-    cancelGetBlogs: typeof getBlogsCancelAction
+    cancelGetBlogs: typeof getBlogsCancelAction,
+    createBlog: typeof createBlogAction
 }
 
 const mapStateToProps = (state: MODEL.IApp) => ({
@@ -23,9 +34,10 @@ const mapStateToProps = (state: MODEL.IApp) => ({
     total: state.blogs.total
 })
 
-const mapDispatchToProps = (dispatch: Dispatch<IGetBlogsAction | IGetBlogsCancelAction>) => ({
+const mapDispatchToProps = (dispatch: Dispatch<IGetBlogsAction | IGetBlogsCancelAction | ICreateBlogAction>) => ({
     getBlogs: (payload: API.blogs.IGetBlogsReq) => dispatch(getBlogsAction(payload)),
-    cancelGetBlogs: () => dispatch(getBlogsCancelAction())
+    cancelGetBlogs: () => dispatch(getBlogsCancelAction()),
+    createBlog: (payload: API.blogs.ICreateBlogReq, form: WrappedFormUtils) => dispatch(createBlogAction(payload, form))
 })
 type IProps = IStateToProps & IDispacthToProps
 
@@ -43,15 +55,40 @@ class Index extends PureComponent<IProps> {
         this.props.cancelGetBlogs()
     }
 
+    handleSubmit: React.ReactEventHandler<HTMLButtonElement> = (ev) => {
+        ev.preventDefault()
+        this.props.form.validateFields((error, payload: API.blogs.ICreateBlogReq) => {
+            if (!error) {
+                this.props.createBlog(payload, this.props.form)
+            }
+        })
+    }
+
     render() {
+        const { form } = this.props
+        const { getFieldDecorator } = form
         return (
             <>
                 <Card>
-
+                    <Form>
+                        <Item>
+                            {getFieldDecorator('author')(
+                                <Input/>
+                            )}
+                        </Item>
+                        <Item>
+                            {getFieldDecorator('content')(
+                                <Input/>
+                            )}
+                        </Item>
+                        <Item>
+                            <Button onClick={this.handleSubmit}>submit</Button>
+                        </Item>
+                    </Form>
                 </Card>
             </>
         )
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Index)
+export default connect(mapStateToProps, mapDispatchToProps)(Form.create()(Index))

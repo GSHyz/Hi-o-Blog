@@ -25,11 +25,13 @@ declare namespace API {
             username: string
         }
     }
+
     namespace blogs {
         export interface IBlogItem {
             id: string | number
             author: string
             createdTime: Date
+            publishTime: Date
             updateTime: Date
             content: string
         }
@@ -40,6 +42,13 @@ declare namespace API {
             total: number
             data: IBlogItem[]
         }
+
+        export interface ICreateBlogReq {
+            author: string
+            content: string
+        }
+
+        export type ICreateBlogRes = {}
     }
 
     export interface error {

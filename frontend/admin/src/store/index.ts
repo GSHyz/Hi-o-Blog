@@ -6,13 +6,15 @@ import * as authSaga from './auth/sagas'
 import * as blogsSaga from './blogs/sagas'
 
 import authReducer from './auth/reducer'
+import blogsReducer from './blogs/reducer'
 import { connectRouter, routerMiddleware } from 'connected-react-router'
 import history from 'utils/history'
 
 const sagaMiddleware = createSagaMiddleware()
 const rootReducer = combineReducers({
     router: connectRouter(history),
-    auth: authReducer
+    auth: authReducer,
+    blogs: blogsReducer
 })
 
 // @ts-ignore

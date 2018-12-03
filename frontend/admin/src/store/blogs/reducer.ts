@@ -1,4 +1,7 @@
 import {
+    ICreateBlogAction,
+    ICreateBlogSuccessAction,
+    ICreteBlogFailureAction,
     IGetBlogsAction,
     IGetBlogsCancelAction,
     IGetBlogsFailureAction,
@@ -19,6 +22,9 @@ type Action =
     | IGetBlogsSuccessAction
     | IGetBlogsFailureAction
     | IGetBlogsCancelAction
+    | ICreteBlogFailureAction
+    | ICreateBlogSuccessAction
+    | ICreateBlogAction
 
 export default (state = initialState, action: Action) => {
     switch (action.type) {
@@ -44,6 +50,23 @@ export default (state = initialState, action: Action) => {
             return {
                 ...state,
                 loading: false
+            }
+        case constants.CREATE_BLOG:
+            return {
+                ...state,
+                loading: true
+            }
+        case constants.CREATE_BLOG_SUCCESS:
+            return {
+                ...state,
+                error: '',
+                loading: false
+            }
+        case constants.CREATE_BLOG_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload
             }
         default:
             return state
