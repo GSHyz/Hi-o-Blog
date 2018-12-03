@@ -2,14 +2,13 @@ import React, { memo, SFC } from 'react'
 import style from './index.module.scss'
 import { Menu } from 'antd'
 import { Link } from 'react-router-dom'
-import { IMenuItem } from 'config/menu'
 
 const { SubMenu, Item } = Menu
 
 interface IProps {
     selectedKeys: string[]
     openKeys: string[]
-    menus: IMenuItem[]
+    menus: API.auth.IMenuItem[]
 
     onOpenChange(keys: string[]): void
 }
