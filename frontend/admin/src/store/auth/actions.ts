@@ -1,4 +1,4 @@
-import constants from './constants'
+import constants from 'store/auth/constants'
 
 export interface ILoginAction {
     type: constants.LOGIN_REQUEST
@@ -15,19 +15,27 @@ export interface ILoginFailureAction {
     payload: string
 }
 
-export const login = (payload: API.auth.ILoginReq): ILoginAction => ({
+export interface ILogoutAction {
+    type: constants.LOGOUT
+}
+
+export const loginAction = (payload: API.auth.ILoginReq): ILoginAction => ({
     type: constants.LOGIN_REQUEST,
     payload
 })
 
-export const loginSuccess = (
+export const loginSuccessAction = (
     payload: API.auth.ILoginRes
 ): ILoginSuccessAction => ({
     type: constants.LOGIN_SUCCESS,
     payload
 })
 
-export const loginFailure = (err: API.error): ILoginFailureAction => ({
+export const loginFailureAction = (err: API.error): ILoginFailureAction => ({
     type: constants.LOGIN_FAILURE,
     payload: err.message
+})
+
+export const logOutAction = (): ILogoutAction => ({
+    type: constants.LOGOUT
 })

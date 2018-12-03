@@ -2,13 +2,13 @@ import React, { PureComponent } from 'react'
 import style from './index.module.scss'
 import { Form, Button, Input, Icon } from 'antd'
 import { FormComponentProps } from 'antd/es/form'
-import { login } from 'store/auth/actions'
+import { loginAction } from 'store/auth/actions'
 
 const { Item } = Form
 
 interface IProps extends FormComponentProps {
     loading: boolean,
-    login: typeof login
+    login: typeof loginAction
 }
 
 class Login extends PureComponent<IProps> {

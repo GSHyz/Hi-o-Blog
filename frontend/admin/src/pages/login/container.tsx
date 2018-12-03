@@ -3,7 +3,7 @@ import Login from './components'
 import { hot } from 'react-hot-loader'
 import { connect } from 'react-redux'
 import { Dispatch } from 'redux'
-import { ILoginAction, login } from 'store/auth/actions'
+import { ILoginAction, loginAction } from 'store/auth/actions'
 import { MODEL } from 'store/model'
 
 interface IStateToProps {
@@ -11,7 +11,7 @@ interface IStateToProps {
 }
 
 interface IDispatchToProps {
-    login: typeof login
+    login: typeof loginAction
 }
 
 type IProps = IStateToProps & IDispatchToProps
@@ -20,7 +20,7 @@ const mapStateToProps = (state: MODEL.IApp) => ({
     loggingIn: state.auth.loggingIn
 })
 const mapDispatchToProps = (dispatch: Dispatch<ILoginAction>) => ({
-    login: (payload: API.auth.ILoginReq) => dispatch(login(payload))
+    login: (payload: API.auth.ILoginReq) => dispatch(loginAction(payload))
 
 })
 

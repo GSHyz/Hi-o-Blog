@@ -14,5 +14,6 @@ declare module MODEL {
         error: string
         username: string
         loggingIn: boolean
+        permissionRouter: { path: string }[]
     }
 }
