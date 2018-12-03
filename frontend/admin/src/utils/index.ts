@@ -5,7 +5,7 @@ const UrlReg = /(((^https?:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+(?::\d+)
  *
  * @param path {string}
  */
-export const isUrl = path => {
+export const isUrl = (path: string) => {
     return UrlReg.test(path)
 }
 export const noop = () => {}

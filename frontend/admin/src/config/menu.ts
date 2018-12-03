@@ -10,14 +10,8 @@ export interface IMenuItem {
 // menu data
 const menuConfig: IMenuItem[] = [
     {
-        name: '控制面板',
-        path: 'dashboard',
-        children: [
-            {
-                name: '表单',
-                path: 'table'
-            }
-        ]
+        name: '日志分析',
+        path: 'log'
     },
     {
         name: '异常页',

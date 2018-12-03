@@ -1,18 +1,19 @@
 import React, { memo, SFC } from 'react'
 import style from './index.module.scss'
-// import MenuContainer from 'containers/Menu'
+import MenuContainer from 'containers/Menu'
 import Header from './Header'
 import { logOutAction } from 'store/auth/actions'
 
 interface IProps {
-    onLogout: typeof logOutAction
+    onLogout: typeof logOutAction,
+    username: string
 }
 
 const BasicLayout: SFC<IProps> = props => (
     <section className={style.layout}>
-        <Header onLogout={props.onLogout}/>
+        <Header username={props.username} onLogout={props.onLogout}/>
         <section className={style.container}>
-            {/*<MenuContainer />*/}
+            <MenuContainer/>
             <main className={style.content}>{props.children}</main>
         </section>
     </section>

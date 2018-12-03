@@ -1,4 +1,5 @@
 import constants from 'store/auth/constants'
+import { IMenuItem } from 'config/menu'
 
 export interface ILoginAction {
     type: constants.LOGIN_REQUEST
@@ -17,6 +18,20 @@ export interface ILoginFailureAction {
 
 export interface ILogoutAction {
     type: constants.LOGOUT
+}
+
+export interface IGetCurrentUserAction {
+    type: constants.GET_CURRENT_USER
+}
+
+export interface IGetCurrentUserSuccessAction {
+    type: constants.GET_CURRENT_USER_SUCCESS
+    payload: IMenuItem[]
+}
+
+export interface IGetCurrentUserFailureAction {
+    type: constants.GET_CURRENT_USER_FAILURE
+    payload: string
 }
 
 export const loginAction = (payload: API.auth.ILoginReq): ILoginAction => ({
@@ -38,4 +53,21 @@ export const loginFailureAction = (err: API.error): ILoginFailureAction => ({
 
 export const logOutAction = (): ILogoutAction => ({
     type: constants.LOGOUT
+})
+
+export const getCurrentUserAction = (): IGetCurrentUserAction => ({
+    type: constants.GET_CURRENT_USER
+})
+export const getCurrentUserSuccessAction = (
+    payload: API.auth.IGetCurrentUserRes
+): IGetCurrentUserSuccessAction => ({
+    type: constants.GET_CURRENT_USER_SUCCESS,
+    payload: payload.permissionRoute
+})
+
+export const getCurrentUserFailureAction = (
+    payload: API.error
+): IGetCurrentUserFailureAction => ({
+    type: constants.GET_CURRENT_USER_FAILURE,
+    payload: payload.message
 })

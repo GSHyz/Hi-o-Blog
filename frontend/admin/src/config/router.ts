@@ -4,7 +4,7 @@ import { getMenuData, IMenuItem } from './menu'
 
 const routerConfig = {
     '/': {
-        redirect: '/logger'
+        redirect: '/log'
     },
     '/log': {
         component: lazy(() => import(/* webpackChunkName: "log" */ 'pages/log'))
@@ -63,7 +63,6 @@ const findMenuKey = (
 }
 
 const menuData = getFlatMenuData(getMenuData())
-console.log(menuData)
 
 const routerData = {}
 // The route matches the menu

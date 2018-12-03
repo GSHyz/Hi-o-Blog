@@ -2,13 +2,15 @@ import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { Redirect, Route } from 'react-router-dom'
 import Exception from '../../components/Exception'
-import { isLogined } from 'helpers'
+import { isLogined } from 'utils/index'
+import { hot } from 'react-hot-loader'
 
 const mapStateToProps = state => ({
     pathname: state.router.location.pathname,
-    permissionRoute: state.auth.user.permissionRoute
+    permissionRoute: state.auth.permissionRoute
 })
 
+@hot(module)
 @connect(mapStateToProps)
 class AuthorizedRoute extends PureComponent {
     render() {
@@ -22,14 +24,14 @@ class AuthorizedRoute extends PureComponent {
             <Route
                 {...rest}
                 render={props => {
-                    if (!isLogined()) {
-                        return <Redirect to="/" />
+                    if (isLogined()) {
+                        return <Redirect to="/login"/>
                     }
                     if (pathname.indexOf('exception') > -1) {
                         return <Component {...props} />
                     }
                     if (!permissionRoute.find(item => item.path === pathname)) {
-                        return <Exception type="403" />
+                        return <Exception type="403"/>
                     }
                     return <Component {...props} />
                 }}

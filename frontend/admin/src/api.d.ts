@@ -8,6 +8,10 @@ declare namespace API {
         export interface ILoginRes {
             token: string
         }
+
+        export interface IGetCurrentUserRes {
+            permissionRoute: any
+        }
     }
 
     export interface error {
