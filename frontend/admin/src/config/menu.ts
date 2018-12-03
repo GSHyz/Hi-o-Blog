@@ -4,30 +4,22 @@ import { isUrl } from 'utils/index'
 // menu data
 const menuConfig: API.auth.IMenuItem[] = [
     {
-        name: '文章管理',
-        path: 'blog'
+        name: '博客管理',
+        path: 'blog',
+        children: [
+            {
+                name: '文章列表',
+                path: 'index'
+            },
+            {
+                name: '新建博客',
+                path: 'create'
+            }
+        ]
     },
     {
         name: '日志分析',
         path: 'log'
-    },
-    {
-        name: '异常页',
-        path: 'exception',
-        children: [
-            {
-                name: '403',
-                path: '403'
-            },
-            {
-                name: '404',
-                path: '404'
-            },
-            {
-                name: '500',
-                path: '500'
-            }
-        ]
     }
 ]
 

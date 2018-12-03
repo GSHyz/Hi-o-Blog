@@ -901,6 +901,14 @@
   dependencies:
     antd "*"
 
+"@types/draft-js@^0.10.26":
+  version "0.10.26"
+  resolved "http://registry.npm.taobao.org/@types/draft-js/download/@types/draft-js-0.10.26.tgz#0b02324b7981cbab32d23cd0a1d968bbf576757b"
+  integrity sha1-CwIyS3mBy6sy0jzQodlou/V2dXs=
+  dependencies:
+    "@types/react" "*"
+    immutable "^3.8.1"
+
 "@types/history@*":
   version "4.7.2"
   resolved "http://registry.npm.taobao.org/@types/history/download/@types/history-4.7.2.tgz#0e670ea254d559241b6eeb3894f8754991e73220"
@@ -2456,6 +2464,11 @@ circular-json@^0.3.1:
   resolved "http://registry.npm.taobao.org/circular-json/download/circular-json-0.3.3.tgz#815c99ea84f6809529d2f45791bdf82711352d66"
   integrity sha1-gVyZ6oT2gJUp0vRXkb34JxE1LWY=
 
+class-autobind@^0.1.4:
+  version "0.1.4"
+  resolved "http://registry.npm.taobao.org/class-autobind/download/class-autobind-0.1.4.tgz#34516c49167cf8d3f639ddc186bcfa2268afff34"
+  integrity sha1-NFFsSRZ8+NP2Od3Bhrz6Imiv/zQ=
+
 class-utils@^0.3.5:
   version "0.3.6"
   resolved "http://registry.npm.taobao.org/class-utils/download/class-utils-0.3.6.tgz#f93369ae8b9a7ce02fd41faad0ca83033190c463"
@@ -3513,7 +3526,49 @@ dotenv@6.0.0:
   resolved "http://registry.npm.taobao.org/dotenv/download/dotenv-6.0.0.tgz#24e37c041741c5f4b25324958ebbc34bca965935"
   integrity sha1-JON8BBdBxfSyUySVjrvDS8qWWTU=
 
-draft-js@^0.10.0, draft-js@~0.10.0:
+draft-js-export-html@>=0.6.0:
+  version "1.2.0"
+  resolved "http://registry.npm.taobao.org/draft-js-export-html/download/draft-js-export-html-1.2.0.tgz#1cbe2b78e1fed74fc29c7cdcbfd7540468eca209"
+  integrity sha1-HL4reOH+10/CnHzcv9dUBGjsogk=
+  dependencies:
+    draft-js-utils "^1.2.0"
+
+draft-js-export-markdown@>=0.3.0:
+  version "1.2.0"
+  resolved "http://registry.npm.taobao.org/draft-js-export-markdown/download/draft-js-export-markdown-1.2.0.tgz#c423d67389e1c70ddd13e956afe82fd1b72feea5"
+  integrity sha1-xCPWc4nhxw3dE+lWr+gv0bcv7qU=
+  dependencies:
+    draft-js-utils "^1.2.0"
+
+draft-js-import-element@^1.2.1:
+  version "1.2.1"
+  resolved "http://registry.npm.taobao.org/draft-js-import-element/download/draft-js-import-element-1.2.1.tgz#9a6a56d74690d48d35d8d089564e6d710b4926eb"
+  integrity sha1-mmpW10aQ1I012NCJVk5tcQtJJus=
+  dependencies:
+    draft-js-utils "^1.2.0"
+    synthetic-dom "^1.2.0"
+
+draft-js-import-html@>=0.4.0:
+  version "1.2.1"
+  resolved "http://registry.npm.taobao.org/draft-js-import-html/download/draft-js-import-html-1.2.1.tgz#88adb8ce5dbe1a5a777663b1893cee6a35239eaa"
+  integrity sha1-iK24zl2+Glp3dmOxiTzuajUjnqo=
+  dependencies:
+    draft-js-import-element "^1.2.1"
+
+draft-js-import-markdown@>=0.3.0:
+  version "1.2.1"
+  resolved "http://registry.npm.taobao.org/draft-js-import-markdown/download/draft-js-import-markdown-1.2.1.tgz#ec18eb15008bab13d9878d65db50e181dd64a5ce"
+  integrity sha1-7BjrFQCLqxPZh41l21Dhgd1kpc4=
+  dependencies:
+    draft-js-import-element "^1.2.1"
+    synthetic-dom "^1.2.0"
+
+draft-js-utils@>=0.2.0, draft-js-utils@^1.2.0:
+  version "1.2.0"
+  resolved "http://registry.npm.taobao.org/draft-js-utils/download/draft-js-utils-1.2.0.tgz#f5cb23eb167325ffed3d79882fdc317721d2fd12"
+  integrity sha1-9csj6xZzJf/tPXmIL9wxdyHS/RI=
+
+draft-js@>=0.10.0, draft-js@^0.10.0, draft-js@^0.10.5, draft-js@~0.10.0:
   version "0.10.5"
   resolved "http://registry.npm.taobao.org/draft-js/download/draft-js-0.10.5.tgz#bfa9beb018fe0533dbb08d6675c371a6b08fa742"
   integrity sha1-v6m+sBj+BTPbsI1mdcNxprCPp0I=
@@ -9243,6 +9298,22 @@ react-router@^4.3.1:
     prop-types "^15.6.1"
     warning "^4.0.1"
 
+react-rte@^0.16.1:
+  version "0.16.1"
+  resolved "http://registry.npm.taobao.org/react-rte/download/react-rte-0.16.1.tgz#e345664c87e992d15ec053b406f51ffac6e86622"
+  integrity sha1-40VmTIfpktFewFO0BvUf+sboZiI=
+  dependencies:
+    babel-runtime "^6.23.0"
+    class-autobind "^0.1.4"
+    classnames "^2.2.5"
+    draft-js ">=0.10.0"
+    draft-js-export-html ">=0.6.0"
+    draft-js-export-markdown ">=0.3.0"
+    draft-js-import-html ">=0.4.0"
+    draft-js-import-markdown ">=0.3.0"
+    draft-js-utils ">=0.2.0"
+    immutable "^3.8.1"
+
 react-side-effect@^1.0.2:
   version "1.1.5"
   resolved "http://registry.npm.taobao.org/react-side-effect/download/react-side-effect-1.1.5.tgz#f26059e50ed9c626d91d661b9f3c8bb38cd0ff2d"
@@ -10517,6 +10588,11 @@ symbol-tree@^3.2.2:
   version "3.2.2"
   resolved "http://registry.npm.taobao.org/symbol-tree/download/symbol-tree-3.2.2.tgz#ae27db38f660a7ae2e1c3b7d1bc290819b8519e6"
   integrity sha1-rifbOPZgp64uHDt9G8KQgZuFGeY=
+
+synthetic-dom@^1.2.0:
+  version "1.2.0"
+  resolved "http://registry.npm.taobao.org/synthetic-dom/download/synthetic-dom-1.2.0.tgz#f3589aafe2b5e299f337bb32973a9be42dd5625e"
+  integrity sha1-81iar+K14pnzN7sylzqb5C3VYl4=
 
 table@^4.0.3:
   version "4.0.3"

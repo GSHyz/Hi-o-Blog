@@ -4,11 +4,16 @@ import { getMenuData } from './menu'
 
 const routerConfig = {
     '/': {
-        redirect: '/blog'
+        redirect: '/blog/index'
     },
-    '/blog': {
+    '/blog/index': {
         component: lazy(() =>
             import(/* webpackChunkName: "blog" */ 'pages/blog')
+        )
+    },
+    '/blog/create': {
+        component: lazy(() =>
+            import(/* webpackChunkName: "blog" */ 'pages/blog/create')
         )
     },
     '/log': {
