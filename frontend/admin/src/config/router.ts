@@ -1,6 +1,6 @@
 import { lazy } from 'react'
 import pathToRegexp from 'path-to-regexp'
-import { getMenuData, IMenuItem } from './menu'
+import { getMenuData } from './menu'
 
 const routerConfig = {
     '/': {
@@ -75,7 +75,7 @@ Object.keys(routerConfig).forEach(path => {
     if (menuKey == null) {
         menuKey = findMenuKey(menuData, path)
     }
-    let menuItem = {} as IMenuItem
+    let menuItem = {} as API.auth.IMenuItem
     // If menuKey is not empty
     if (menuKey) {
         menuItem = menuData[menuKey]

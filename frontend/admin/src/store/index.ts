@@ -1,7 +1,10 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import loggerMiddleware from 'redux-logger'
 import createSagaMiddleware from 'redux-saga'
-import saga from './auth/sagas'
+import { all } from 'redux-saga/effects'
+import * as authSaga from './auth/sagas'
+import * as blogsSaga from './blogs/sagas'
+
 import authReducer from './auth/reducer'
 import { connectRouter, routerMiddleware } from 'connected-react-router'
 import history from 'utils/history'
@@ -26,6 +29,15 @@ const store = createStore(
         )
     )
 )
+const sagaMap = { ...authSaga, ...blogsSaga }
+const sagaSet = Object.keys(sagaMap).map(saga => {
+    return sagaMap[saga]()
+})
+
+function* saga() {
+    yield all([...sagaSet])
+}
+
 sagaMiddleware.run(saga)
 
 export default store

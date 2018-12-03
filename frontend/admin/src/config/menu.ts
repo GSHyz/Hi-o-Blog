@@ -1,14 +1,8 @@
 import isEmpty from 'lodash/isEmpty'
 import { isUrl } from 'utils/index'
 
-export interface IMenuItem {
-    name: string
-    path: string
-    children?: IMenuItem[]
-}
-
 // menu data
-const menuConfig: IMenuItem[] = [
+const menuConfig: API.auth.IMenuItem[] = [
     {
         name: '日志分析',
         path: 'log'
@@ -33,7 +27,7 @@ const menuConfig: IMenuItem[] = [
     }
 ]
 
-const formatter = (data: IMenuItem[], parentPath = '/') => {
+const formatter = (data: API.auth.IMenuItem[], parentPath = '/') => {
     return data.map(item => {
         let { path } = item
         if (!isUrl(path)) {
@@ -53,7 +47,7 @@ const formatter = (data: IMenuItem[], parentPath = '/') => {
     })
 }
 
-const filterMenu = (menu: IMenuItem, mapping = {}, parent = '') => {
+const filterMenu = (menu: API.auth.IMenuItem, mapping = {}, parent = '') => {
     const currentPath = `${parent}/${menu.path}`
     if (!menu.children) {
         return mapping[currentPath] && menu

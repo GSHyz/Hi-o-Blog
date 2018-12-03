@@ -4,7 +4,6 @@ import { hot } from 'react-hot-loader'
 import { connect } from 'react-redux'
 import { makeGetFlatPermissionRoute } from 'store/auth/selectors'
 import { MODEL } from 'store/model'
-import { IMenuItem } from 'config/menu'
 
 const getSingleOpenKeys = (pathname: string) => {
     const index = pathname.lastIndexOf('/')
@@ -29,7 +28,7 @@ const makeMapStateToProps = () => {
 
 interface IStateToProps {
     pathname: string
-    permissionRoute: IMenuItem[]
+    permissionRoute: API.auth.IMenuItem[]
 }
 
 interface IDsipatchToProps {}

@@ -7,6 +7,7 @@ declare module MODEL {
     export interface IApp {
         auth: IAuth
         router: RouterState
+        blogs: IBlogs
     }
 
     export interface IAuth {
@@ -14,6 +15,11 @@ declare module MODEL {
         error: string
         username: string
         loggingIn: boolean
-        permissionRoute: { path: string }[]
+        permissionRoute: API.auth.IMenuItem[]
+    }
+
+    export interface IBlogs extends API.blogs.IGetBlogsRes {
+        loading: boolean
+        error: string
     }
 }

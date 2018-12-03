@@ -1,4 +1,4 @@
-import { call, take, all, put, select } from 'redux-saga/effects'
+import { call, take, put, select } from 'redux-saga/effects'
 import { SagaIterator } from 'redux-saga'
 import {
     ILoginAction,
@@ -15,14 +15,7 @@ import { push } from 'connected-react-router'
 import { notification } from 'antd'
 import { MODEL } from 'store/model'
 
-function* logoutFlow() {
-    while (true) {
-        yield take(constants.LOGOUT)
-        yield put(logOutAction())
-        localStorage.removeItem('token')
-        yield put(push('/loginAction'))
-    }
-}
+const getPathname = (state: MODEL.IApp) => state.router.location.pathname
 
 function* login(payload: API.auth.ILoginReq): SagaIterator {
     try {
@@ -40,16 +33,23 @@ function* login(payload: API.auth.ILoginReq): SagaIterator {
     }
 }
 
-function* loginFlow(): SagaIterator {
+export function* loginFlow(): SagaIterator {
     while (true) {
         const { payload }: ILoginAction = yield take(constants.LOGIN_REQUEST)
         yield call(login, payload)
     }
 }
 
-const getPathname = (state: MODEL.IApp) => state.router.location.pathname
+export function* logoutFlow() {
+    while (true) {
+        yield take(constants.LOGOUT)
+        yield put(logOutAction())
+        localStorage.removeItem('token')
+        yield put(push('/loginAction'))
+    }
+}
 
-function* getCurrentUserFlow(): SagaIterator {
+export function* getCurrentUserFlow(): SagaIterator {
     while (true) {
         yield take(constants.GET_CURRENT_USER)
         const pathname = yield select(getPathname)
@@ -83,6 +83,6 @@ function* getCurrentUserFlow(): SagaIterator {
     }
 }
 
-export default function*() {
-    yield all([loginFlow(), logoutFlow(), getCurrentUserFlow()])
-}
+// export default function* () {
+//     yield all([loginFlow(), logoutFlow(), getCurrentUserFlow()])
+// }

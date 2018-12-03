@@ -1,5 +1,4 @@
 import constants from 'store/auth/constants'
-import { IMenuItem } from 'config/menu'
 
 export interface ILoginAction {
     type: constants.LOGIN_REQUEST
@@ -26,7 +25,7 @@ export interface IGetCurrentUserAction {
 
 export interface IGetCurrentUserSuccessAction {
     type: constants.GET_CURRENT_USER_SUCCESS
-    payload: IMenuItem[]
+    payload: API.auth.IMenuItem[]
 }
 
 export interface IGetCurrentUserFailureAction {
