@@ -65,6 +65,8 @@ export function* createBlogFlow(): SagaIterator {
                 yield put(push('/blog'))
             } catch (e) {
                 form.resetFields()
+                // @ts-ignore
+                form.editor.value('')
             }
         } catch (e) {
             yield put(createBlogFailureAction(e))

@@ -75,14 +75,9 @@ export function* getCurrentUserFlow(): SagaIterator {
         } else {
             yield put(getCurrentUserFailureAction(new Error('未登录')))
             localStorage.removeItem('token')
-            console.log('logout')
             if (pathname !== '/login') {
                 yield put(push('/login'))
             }
         }
     }
 }
-
-// export default function* () {
-//     yield all([loginFlow(), logoutFlow(), getCurrentUserFlow()])
-// }

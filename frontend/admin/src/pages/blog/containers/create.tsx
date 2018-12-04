@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react'
-import { hot } from 'react-hot-loader'
 import { connect } from 'react-redux'
 import { Dispatch } from 'redux'
 import { MODEL } from 'store/model'
@@ -10,8 +9,8 @@ import {
 import { Card, Form, Button, Input } from 'antd'
 import { FormComponentProps } from 'antd/es/form'
 import { WrappedFormUtils } from 'antd/es/form/Form'
-import RichTextEditor from 'react-rte'
-import ReactMarkdown from 'react-markdown'
+import SimpleMDE from 'simplemde'
+import 'simplemde/dist/simplemde.min.css'
 
 const { Item } = Form
 
@@ -41,31 +40,40 @@ const mapDispatchToProps = (dispatch: Dispatch<ICreateBlogAction>) => ({
 })
 type IProps = IStateToProps & IDispacthToProps
 
-@hot(module)
 class Create extends PureComponent<IProps, IState> {
-    state = {
-        value: RichTextEditor.createEmptyValue(),
-        markdown: ''
-    }
-    handleSubmit: React.ReactEventHandler<HTMLButtonElement> = (ev) => {
-        ev.preventDefault()
-        this.props.form.validateFields((error, payload: API.blogs.ICreateBlogReq) => {
-            if (!error) {
-                this.props.createBlog({
-                    author: payload.author,
-                    // @ts-ignore
-                    content: payload.content.toString('markdown')
-                }, this.props.form)
+
+    public simpleMDE: SimpleMDE | undefined
+
+    componentDidMount(): void {
+        this.simpleMDE = new SimpleMDE({
+            autosave: {
+                enabled: true,
+                delay: 1000,
+                uniqueId: '123'
             }
         })
-    }
-    handleEditorChange = (value: any) => {
-        const markdown = value.toString('markdown')
-        this.setState({
-            value: value,
-            markdown
+        this.simpleMDE!.codemirror.on('change', () => {
+            this.props.form.setFieldsValue({
+                content: this.simpleMDE!.value()
+            })
         })
+    }
 
+    componentWillUnmount(): void {
+        if (this.simpleMDE) {
+            this.simpleMDE.codemirror.off('change')
+        }
+    }
+
+    handleSubmit: React.ReactEventHandler<HTMLButtonElement> = (ev) => {
+        ev.preventDefault()
+        // @ts-ignore
+        this.props.form.editor = this.simpleMDE
+        this.props.form.validateFields((error, payload: API.blogs.ICreateBlogReq) => {
+            if (!error) {
+                this.props.createBlog(payload, this.props.form)
+            }
+        })
     }
 
     render() {
@@ -75,7 +83,7 @@ class Create extends PureComponent<IProps, IState> {
             <>
                 <Card>
                     <Form>
-                        <Item>
+                        <Item label="作者">
                             {getFieldDecorator('author', {
                                 rules: [{
                                     required: true,
@@ -85,24 +93,19 @@ class Create extends PureComponent<IProps, IState> {
                                 <Input/>
                             )}
                         </Item>
-                        <Item>
+                        <Item label="内容">
                             {
                                 getFieldDecorator('content', {
-                                    initialValue: this.state.value,
                                     rules: [{
-                                        min: 50,
-                                        message: '内容过短'
-                                    }]
+                                        required: true,
+                                        message: '请输入作者'
+                                    }],
+                                    initialValue: this.simpleMDE ? this.simpleMDE.value() : ''
                                 })(
-                                    <RichTextEditor
-                                        onChange={this.handleEditorChange}/>
+                                    <textarea/>
                                 )
                             }
                         </Item>
-                        <Item>
-                            <ReactMarkdown source={this.state.markdown}/>
-                        </Item>
-
                         <Item>
                             <Button onClick={this.handleSubmit}>submit</Button>
                         </Item>

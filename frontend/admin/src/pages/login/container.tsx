@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react'
 import Login from './components'
-import { hot } from 'react-hot-loader'
 import { connect } from 'react-redux'
 import { Dispatch } from 'redux'
 import { ILoginAction, loginAction } from 'store/auth/actions'
@@ -24,7 +23,6 @@ const mapDispatchToProps = (dispatch: Dispatch<ILoginAction>) => ({
 
 })
 
-@hot(module)
 class LoginContainer extends PureComponent<IProps> {
     render(): React.ReactNode {
         return <Login loading={this.props.loggingIn} login={this.props.login}/>

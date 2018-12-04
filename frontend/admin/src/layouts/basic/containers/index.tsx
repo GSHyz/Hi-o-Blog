@@ -10,7 +10,6 @@ import { Switch, Redirect, Route } from 'react-router-dom'
 // import AuthorizedRoute from 'containers/AuthorizedRoute'
 import { MODEL } from 'store/model'
 import { getCurrentUserAction, IGetCurrentUserAction, logOutAction } from 'store/auth/actions'
-import { hot } from 'react-hot-loader'
 
 interface IStateToProps {
     pathname: string,
@@ -33,7 +32,6 @@ const mapDispatchToProps = (dispatch: Dispatch<IGetCurrentUserAction>) => ({
     }
 })
 
-@hot(module)
 class BasicLayoutContainer extends PureComponent<IProps> {
 
     componentDidMount() {

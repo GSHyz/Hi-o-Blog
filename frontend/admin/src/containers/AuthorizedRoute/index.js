@@ -3,14 +3,12 @@ import { connect } from 'react-redux'
 import { Redirect, Route } from 'react-router-dom'
 import Exception from '../../components/Exception'
 import { isLogined } from 'utils/index'
-import { hot } from 'react-hot-loader'
 
 const mapStateToProps = state => ({
     pathname: state.router.location.pathname,
     permissionRoute: state.auth.permissionRoute
 })
 
-@hot(module)
 @connect(mapStateToProps)
 class AuthorizedRoute extends PureComponent {
     render() {

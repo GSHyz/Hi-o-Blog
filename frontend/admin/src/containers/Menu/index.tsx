@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react'
 import Menu from 'components/Menu'
-import { hot } from 'react-hot-loader'
 import { connect } from 'react-redux'
 import { makeGetFlatPermissionRoute } from 'store/auth/selectors'
 import { MODEL } from 'store/model'
@@ -41,7 +40,6 @@ interface IState {
     lastOpenKey: string | undefined
 }
 
-@hot(module)
 class BaseMenuContainer extends PureComponent<IProps, IState> {
     static getDerivedStateFromProps(nextProps: IProps, prevState: IState) {
         const nextOpenKey = getSingleOpenKeys(nextProps.pathname)

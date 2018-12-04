@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react'
-import { hot } from 'react-hot-loader'
 import { connect } from 'react-redux'
 import { Dispatch } from 'redux'
 import { MODEL } from 'store/model'
@@ -41,7 +40,6 @@ const mapDispatchToProps = (dispatch: Dispatch<IGetBlogsAction | IGetBlogsCancel
 })
 type IProps = IStateToProps & IDispacthToProps
 
-@hot(module)
 class Index extends PureComponent<IProps> {
 
     componentDidMount(): void {
