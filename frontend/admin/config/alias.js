@@ -8,5 +8,6 @@ const alias = {
     'pages':path.resolve(__dirname,'../src/pages'),
     'config':path.resolve(__dirname,'../src/config'),
     'api':path.resolve(__dirname,'../src/api'),
+    'layouts':path.resolve(__dirname,'../src/layouts'),
 }
 module.exports = alias

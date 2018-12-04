@@ -10,7 +10,8 @@ const initialState: MODEL.IAuth = {
     username: '',
     token: '',
     error: '',
-    loggingIn: false
+    loggingIn: false,
+    permissionRoute: []
 }
 type Action = ILoginAction | ILoginSuccessAction | ILoginFailureAction
 export default (state = initialState, action: Action): MODEL.IAuth => {

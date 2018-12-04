@@ -1,31 +1,52 @@
-import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux'
 import loggerMiddleware from 'redux-logger'
 import createSagaMiddleware from 'redux-saga'
-import saga from './auth/sagas'
-import authReducer from './auth/reducer'
-import { connectRouter, routerMiddleware } from 'connected-react-router'
+import { all } from 'redux-saga/effects'
+import * as authSaga from './auth/sagas'
+import * as blogsSaga from './blogs/sagas'
+
+import { routerMiddleware } from 'connected-react-router'
 import history from 'utils/history'
+import rootReducer from './rootReducer'
 
 const sagaMiddleware = createSagaMiddleware()
-const rootReducer = combineReducers({
-    router: connectRouter(history),
-    auth: authReducer
-})
 
 // @ts-ignore
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
-
-const store = createStore(
-    rootReducer,
-    {},
-    composeEnhancers(
-        applyMiddleware(
-            sagaMiddleware,
-            routerMiddleware(history),
-            loggerMiddleware
+const configStore = (initialState = {}) => {
+    const store = createStore(
+        rootReducer,
+        initialState,
+        composeEnhancers(
+            applyMiddleware(
+                sagaMiddleware,
+                routerMiddleware(history),
+                loggerMiddleware
+            )
         )
     )
-)
-sagaMiddleware.run(saga)
+    const sagaMap = { ...authSaga, ...blogsSaga }
+    const sagaSet = Object.keys(sagaMap).map(saga => {
+        return sagaMap[saga]()
+    })
 
-export default store
+    function* saga() {
+        yield all([...sagaSet])
+    }
+
+    sagaMiddleware.run(saga)
+
+    //@ts-ignore
+    if (module.hot) {
+        // Enable Webpack hot module replacement for reducers
+        console.log(1)
+        //@ts-ignore
+        module.hot.accept('./rootReducer', () => {
+            const nextRootReducer = require('./rootReducer')
+            store.replaceReducer(nextRootReducer)
+        })
+    }
+    return store
+}
+
+export default configStore
